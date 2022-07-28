@@ -42,7 +42,7 @@ function openCloseCart() {
 //     myNotification.classList.toggle('hide-notification');
 // }
 
-// Function that increases quantity of each product
+// Functions that increases and decreases quantity of each product
 
 function increaseQuantity(el) {
     let plusClick = el.currentTarget.parentElement.parentElement.parentElement;
@@ -68,6 +68,9 @@ function decreaseQuantity(el) {
      }
      theTargetSection.querySelector('b').innerHTML = numberDisplay;
 }
+
+// Function that updates the number of items in the cart
+
  function updateCart(el) {
     let cartUpdate = el.currentTarget.parentElement.parentElement;
     let plusClickId = cartUpdate.id;
