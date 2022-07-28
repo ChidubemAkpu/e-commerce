@@ -42,7 +42,9 @@ function openCloseCart() {
        myCart.classList.toggle('hide-cart')
        let contentOfCart = document.querySelectorAll('.cart-content');
        if (contentOfCart.length > 0) {
-        cartCloseOpen = forNoProduct.classList.add('hide-no-product')
+        cartCloseOpen = forNoProduct.classList.add('hide-no-product');
+        var eachProductInsideCart = document.querySelectorAll('.cart-content');
+        alert(eachProductInsideCart.length)
         } else{
             forNoProduct.classList.remove('hide-no-product');
         }
