@@ -1,97 +1,86 @@
-const forOpenClose = document.querySelectorAll('.for-open-close');
-const productImage = document.querySelectorAll('.product-image');
-const myCartItems = document.querySelectorAll('.cart-content');
-const myProductCount = document.querySelector('.product-cart-count');
+let openClose = document.querySelectorAll('.for-open-close');
+let cartToggle = document.querySelector('.product-cart-count');
 let myCart = document.querySelector('.cart');
-let forPrice = document.querySelector('.for-price h1');
-let count = 0;
+let myNotification = document.querySelector('.notification');
+let productSection = document.querySelectorAll('section');
+let plusMinusTarget = document.querySelectorAll('.plus-minus');
+let num = 1;
 
 
-let cartUpdate = document.querySelector('.click-to-update-cart');
-cartUpdate.addEventListener('click', addItemToCart)
-
-myProductCount.addEventListener('click', toggleCart)
-function toggleCart(){
-    myCart.classList.toggle('hide-cart')
+for (let openAndClose of openClose){
+    openAndClose.addEventListener('click', openCloseMenu);
 }
 
-function addItemToCart(){
-    let productTotal = forPrice.innerHTML.slice(1) * document.querySelector('.plus-minus b').innerHTML;
-    let productTotalEx = forPrice.innerHTML + ' x ' + document.querySelector('.plus-minus b').innerHTML;
-    let createClass = document.createElement('div');
-    createClass.className = 'cart-item';
-    let cloneImage = document.querySelector('.active-product>img').cloneNode(true);
-    createClass.append(cloneImage);
-    // myCart.append(createClass);
-    createClass.insertAdjacentHTML("beforeend",`<div>
-    <p>Autumn Limited Edition...</p> 
-    <div class="show-price">
-        <span>${productTotalEx}</span> <h3>${productTotal}</h3>
-    </div>
-</div>
-
-<div class="delete">
-    <img src="images/icon-delete.svg" alt="">
-</div>
-
-`);
-
-myCartItems[0].append(createClass);
-myCartItems[0].insertAdjacentHTML('beforeend','<div class="for-checkout">Checkout</div>')
-
-}
-if (myCartItems.length == 0) {
-    let noItem = document.createElement('div');
-    noItem.className = 'no-product';
-    noItem.innerHTML = 'Your cart is empty';
-    noItem.style.fontWeight = '700'
-    noItem.style.color = 'hsl(219, 9%, 45%)'
-    noItem.style.textAlign = 'center';
-    myCart.append(noItem);
+for (let eachProductSection of productSection ){
+    eachProductSection.id = 'section' + num;
+    num++;
 }
 
-const plusOne = document.querySelector('.for-plus');
-const minusOne = document.querySelector('.for-minus');
-plusOne.addEventListener('click', myPlusCount);
-minusOne.addEventListener('click', myMinusCount);
-function myMinusCount(){
-    --count;
-    if (count < 0) {
-        count = 0;
-        
-    }
-    document.querySelector('.plus-minus b').innerHTML = count;
-    document.querySelector('.notification').innerHTML = count;
-}
-function myPlusCount(){
-    ++count;
-    document.querySelector('.plus-minus b').innerHTML = count;
-    document.querySelector('.notification').innerHTML = count;
-}
-for (let openClose of forOpenClose) {
-    openClose.addEventListener('click',openCloseMenu);
-   
+for (let eachPlusMinus of plusMinusTarget) {
+    eachPlusMinus.querySelector('.for-plus').addEventListener('click', increaseQuantity);
+    eachPlusMinus.querySelector('.for-minus').addEventListener('click', decreaseQuantity);
+    eachPlusMinus.nextElementSibling.addEventListener('click', updateCart)
 }
 
+cartToggle.addEventListener('click', openCloseCart);
+
+
+
+
+
+// Function that opens and close the menu items when hamburger/x is clicked
 function openCloseMenu() {
     document.querySelector('.menu-items').classList.toggle('hide');
     setTimeout(() => document.querySelector('.for-transparent').classList.toggle('remove'),500)
 }
 
-for (var eachImage of productImage) {
-    eachImage.addEventListener('click', openTransparentProduct); 
+// Function that opens and closes the cart when cart icon is clicked.
+function openCloseCart() {
+       myCart.classList.toggle('hide-cart')
+}
+// if (myNotification.innerHTML >= 1) {
+//     myNotification.classList.toggle('hide-notification');
+// }
+
+// Function that increases quantity of each product
+
+function increaseQuantity(el) {
+    let plusClick = el.currentTarget.parentElement.parentElement.parentElement;
+    let plusClickId = plusClick.id;
+    // console.log(plusClickId)
+    let theTargetSection = document.querySelector('#' + plusClickId);
+    let numberDisplay = +theTargetSection.querySelector('b').innerHTML;
+    numberDisplay++;
+    theTargetSection.querySelector('b').innerHTML = numberDisplay;
+    return numberDisplay; 
 }
 
-function openTransparentProduct(){
-    document.querySelector('.transparent-product').style.display='grid';
-    let addMe = eachImage.cloneNode(true);
-    document.querySelector('.transparent-product').append(addMe)
-    document.querySelector('.close-transparent').addEventListener('click', closeTransparentProduct)
-    function closeTransparentProduct() {
-        addMe.remove();
-        document.querySelector('.transparent-product').style.display='none';
-
-    }   
+function decreaseQuantity(el) {
+    let plusClick = el.currentTarget.parentElement.parentElement.parentElement;
+    let plusClickId = plusClick.id;
+    //  console.log(plusClickId)
+    let theTargetSection = document.querySelector('#' + plusClickId);
+    let numberDisplay = +theTargetSection.querySelector('b').innerHTML;
+     if( numberDisplay <= 0){
+        numberDisplay = 0;
+     }else{
+        numberDisplay--;
+     }
+     theTargetSection.querySelector('b').innerHTML = numberDisplay;
 }
-
-// alert(document.querySelector('.active-product>img'))
+ function updateCart(el) {
+    let cartUpdate = el.currentTarget.parentElement.parentElement;
+    let plusClickId = cartUpdate.id;
+    let theTargetSection = document.querySelector('#' + plusClickId);
+    let numberDisplay = +theTargetSection.querySelector('b').innerHTML;
+    let  displayNotification = +myNotification.innerHTML;
+    if (displayNotification <= 0) {
+        displayNotification = 0;
+    }
+    displayNotification += numberDisplay;
+    myNotification.innerHTML = displayNotification;
+    if (myNotification.innerHTML >= 1) {
+        myNotification.classList.add('hide-notification');
+    }
+    theTargetSection.querySelector('b').innerHTML = 0;
+ }

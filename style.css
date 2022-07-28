@@ -6,12 +6,18 @@
 main{
     padding: 2em 0 0;
     position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
    }
 nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.1em 1.5em;
+    padding: 0.1em 1.5em 1em;
+    position: sticky;
+    top: 1px;
+    z-index:5;
+    background: white;
 }
 .logo-and-menu{
     display: flex;
@@ -35,9 +41,12 @@ nav{
  color: white;
  font-size: 70%;
  padding: 7px;
- display: flex;
+ display: none;
  align-items: center;
  justify-content: center;
+}
+.hide-notification{
+    display: flex;
 }
 .menu-items{
     display: flex;
@@ -110,10 +119,11 @@ section{
 }
 .active-product{
     width: 100%;
-    height: 60vh;
+    height: 40vh;
 }
 .active-product img{
     width: 100%; height: 100%;
+    border-radius: 5px 5px 0 0;
 }
 .product-writeup{
     padding: 01em 1em;
