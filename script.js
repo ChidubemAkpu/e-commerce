@@ -139,7 +139,7 @@ function removeProduct(el) {
     let eachCartItenmId = el.currentTarget.parentElement.parentElement.parentElement.id;
      let removeFromCart = document.getElementById(eachCartItenmId);
      let theRealNumber = +removeFromCart.querySelector('.checkout-number').innerHTML;
-     alert(theRealNumber)
+   //  alert(theRealNumber)
      let updateNotification = +myNotification.innerHTML;
      removeFromCart.remove();
      let contentOfCart = document.querySelectorAll('.cart-content');
