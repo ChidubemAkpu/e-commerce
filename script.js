@@ -6,6 +6,7 @@ let productSection = document.querySelectorAll('section');
 let plusMinusTarget = document.querySelectorAll('.plus-minus');
 let forNoProduct = document.querySelector('.no-product');
 let num = 1;
+let cartNum = 1;
 
 
 for (let openAndClose of openClose){
@@ -44,7 +45,9 @@ function openCloseCart() {
        if (contentOfCart.length > 0) {
         cartCloseOpen = forNoProduct.classList.add('hide-no-product');
         var eachProductInsideCart = document.querySelectorAll('.cart-content');
-        alert(eachProductInsideCart.length)
+        for (let eachProduct of eachProductInsideCart){
+            eachProduct.querySelector('.delete img').addEventListener('click', removeProduct)
+        }
         } else{
             forNoProduct.classList.remove('hide-no-product');
         }
@@ -109,13 +112,13 @@ function decreaseQuantity(el) {
     let totalAmountToDisplay = `$${totalAmount}`;
     theTargetSection.querySelector('b').innerHTML = 0;
     myCart.insertAdjacentHTML("beforeend", `
-    <div class="cart-content" id = "${'cart' + plusClickId}">
+    <div class="cart-content" id = "${'cartSection' + cartNum}">
     <div class="cart-item">
         <img src="${imageLink}" alt="">
         <div>
             <p>Autumn Limited Edition...</p> 
             <div class="show-price">
-                <span>${thePrice} x ${numberDisplay}</span> <h3>${totalAmountToDisplay}</h3>
+                <span>${thePrice}</span>x<span class="checkout-number">${numberDisplay}</span> <h3>${totalAmountToDisplay}</h3>
             </div>
         </div>
        
@@ -127,5 +130,24 @@ function decreaseQuantity(el) {
     <div class="for-checkout">Checkout</div>
 </div> 
     `)
-  
+  cartNum++;
  }
+
+//  The function to remove products
+
+function removeProduct(el) {
+    let eachCartItenmId = el.currentTarget.parentElement.parentElement.parentElement.id;
+     let removeFromCart = document.getElementById(eachCartItenmId);
+     let theRealNumber = +removeFromCart.querySelector('.checkout-number').innerHTML;
+     alert(theRealNumber)
+     let updateNotification = +myNotification.innerHTML;
+     removeFromCart.remove();
+     let contentOfCart = document.querySelectorAll('.cart-content');
+     if (contentOfCart.length > 0) {
+        cartCloseOpen = forNoProduct.classList.add('hide-no-product');
+        } else{
+            forNoProduct.classList.remove('hide-no-product');
+        }
+        
+        myNotification.innerHTML = updateNotification - theRealNumber;
+}
