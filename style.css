@@ -263,13 +263,16 @@ section{
     text-decoration: line-through;
 }
 .cart{
-    position: absolute;
-    width: 95%;
-    right: 0.5em;
-    top: 3em;
+    position: fixed;
+    width: 80%;
+    margin: auto;
+    right: 2.5em;
+    left:2em;
+    top: 7em;
     background: white;
     border-radius: 10px;
     display: none; 
+    overflow: auto;
 }
 .hide-cart{
     display: block;
