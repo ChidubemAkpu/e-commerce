@@ -282,3 +282,6 @@ section{
     place-content: center;
     height: 200px;
 }
+.hide-no-product{
+    display: none;
+}

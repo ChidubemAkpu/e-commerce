@@ -4,6 +4,8 @@ let myCart = document.querySelector('.cart');
 let myNotification = document.querySelector('.notification');
 let productSection = document.querySelectorAll('section');
 let plusMinusTarget = document.querySelectorAll('.plus-minus');
+let contentOfCart = document.querySelectorAll('.cart-content');
+let forNoProduct = document.querySelector('.no-product');
 let num = 1;
 
 
@@ -22,6 +24,8 @@ for (let eachPlusMinus of plusMinusTarget) {
     eachPlusMinus.nextElementSibling.addEventListener('click', updateCart)
 }
 
+
+
 cartToggle.addEventListener('click', openCloseCart);
 
 
@@ -37,7 +41,13 @@ function openCloseMenu() {
 // Function that opens and closes the cart when cart icon is clicked.
 function openCloseCart() {
        myCart.classList.toggle('hide-cart')
+       if (contentOfCart.length > 0) {
+        forNoProduct.classList.add('hide-no-product')
+        } else{
+                forNoProduct.classList.remove('hide-no-product');
+        }
 }
+
 // if (myNotification.innerHTML >= 1) {
 //     myNotification.classList.toggle('hide-notification');
 // }
