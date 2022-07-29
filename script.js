@@ -152,10 +152,12 @@ function removeProduct(el) {
     let eachCartItenmId = el.currentTarget.parentElement.parentElement.parentElement.id;
      let removeFromCart = document.getElementById(eachCartItenmId);
      let theRealNumber = +removeFromCart.querySelector('.checkout-number').innerHTML;
+
      let theRealPrice = removeFromCart.querySelector('.checkout-total-amount').innerHTML;
      let realPrice = +theRealPrice.slice(1);
      checkoutTotalAmount -= +realPrice;
      checkoutTotalAmountDisplay.innerHTML = `Total :$${checkoutTotalAmount}`;
+
      let updateNotification = +myNotification.innerHTML;
     //  removeFromCart.style.visibility = 'hidden';
      removeFromCart.remove();
@@ -182,3 +184,4 @@ function removeAllCart() {
     checkoutContainer.classList.remove('hide-checkout-container');
     forNoProduct.classList.remove('hide-no-product');
 }
+
