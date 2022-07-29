@@ -210,17 +210,20 @@ section{
     display:flex;
 }
 .cart-item>img{
-    width: 50px;
+    width: 70px;
     border-radius:3px;
 }
 .cart-content{
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5em;
-    padding: 1em;
+    padding: 1.5em;
     margin:0.1em 0.5em 1em;
-    border: 1px solid black;
-    border-radius: 8px;;
+    border-bottom: 3px solid hsl(26, 100%, 55%);
+    border-radius: 10px;
+    font-weight: 700;
+    color:hsl(219, 9%, 45%);;
+
 }
 .cart-item{
     display: flex;
@@ -246,7 +249,7 @@ section{
     background:hsl(26, 100%, 55%);
     color: white;
     font-weight: 700;
-    transition: 0.3s;
+    transition: 0.1s;
     cursor: pointer;
 }
 .for-checkout:hover{
@@ -328,7 +331,7 @@ li:hover{
 .cart>h5{
     color: green;
     text-align: center;
-    padding: 2px;
+    padding-top: 2em;;
     opacity: 0;
     transition: 1s;
 }
