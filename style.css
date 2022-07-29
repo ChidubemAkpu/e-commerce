@@ -255,6 +255,7 @@ section{
 .click-to-update-cart:hover{
     background: yellow;
     cursor: pointer;
+    color: black;
 }
 .product-writeup>h6 , .discount-percent{
     color: hsl(26, 100%, 55%);
