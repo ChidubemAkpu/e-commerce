@@ -335,4 +335,7 @@ li:hover{
     opacity: 0;
     transition: 1s;
 }
+.checkout-total-amount{
+    color: green;
+}
 
