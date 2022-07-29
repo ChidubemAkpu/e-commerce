@@ -6,6 +6,7 @@ let productSection = document.querySelectorAll('section');
 let plusMinusTarget = document.querySelectorAll('.plus-minus');
 let forNoProduct = document.querySelector('.no-product');
 let checkoutContainer = document.querySelector('.for-checkout-container');
+let successMessage = document.querySelector('.cart>h5');
 let cartContent = document.querySelector('.cart-content-container');
 let checkoutTotalAmountDisplay = document.querySelector('.total-amount');
 let checkOutButton = document.querySelector('.for-checkout');
@@ -144,6 +145,7 @@ function decreaseQuantity(el) {
     `)
   cartNum++;
   cartContent.style.display = 'block';
+  successMessage.style.opacity = '0';
  }
 
 //  The function to remove products
@@ -183,5 +185,6 @@ function removeAllCart() {
     Array.from(selectAllCartContent).forEach((item) => item.remove());
     checkoutContainer.classList.remove('hide-checkout-container');
     forNoProduct.classList.remove('hide-no-product');
+    successMessage.style.opacity = '1';
 }
 

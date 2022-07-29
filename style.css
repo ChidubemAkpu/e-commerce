@@ -324,4 +324,11 @@ li:hover{
    background: hsl(26, 100%, 55%);
    color:white;
 }
+.cart>h5{
+    color: green;
+    text-align: center;
+    padding: 2px;
+    opacity: 0;
+    transition: 1s;
+}
 
