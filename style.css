@@ -246,6 +246,15 @@ section{
     background:hsl(26, 100%, 55%);
     color: white;
     font-weight: 700;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.for-checkout:hover{
+    background: yellow;
+}
+.click-to-update-cart:hover{
+    background: yellow;
+    cursor: pointer;
 }
 .product-writeup>h6 , .discount-percent{
     color: hsl(26, 100%, 55%);
@@ -289,3 +298,30 @@ section{
 .hide-no-product{
     display: none;
 }
+.for-checkout-container{
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    align-items: center;
+    margin-top: 2em;
+    margin-top: 2em;
+    padding: 2em;
+}
+.hide-checkout-container{
+    display: flex;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+li{
+ border-left: 2px solid hsl(26, 100%, 55%);
+ padding: 0.5em;
+ border-radius: 5px;
+ background: hsl(25, 100%, 94%);
+}
+li:hover{
+   background: hsl(26, 100%, 55%);
+   color:white;
+}
+

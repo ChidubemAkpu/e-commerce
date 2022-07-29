@@ -5,6 +5,12 @@ let myNotification = document.querySelector('.notification');
 let productSection = document.querySelectorAll('section');
 let plusMinusTarget = document.querySelectorAll('.plus-minus');
 let forNoProduct = document.querySelector('.no-product');
+let checkoutContainer = document.querySelector('.for-checkout-container');
+let cartContent = document.querySelector('.cart-content-container');
+let checkoutTotalAmountDisplay = document.querySelector('.total-amount');
+let checkOutButton = document.querySelector('.for-checkout');
+checkOutButton.addEventListener('click', removeAllCart);
+let checkoutTotalAmount = 0;
 let num = 1;
 let cartNum = 1;
 
@@ -44,6 +50,7 @@ function openCloseCart() {
        let contentOfCart = document.querySelectorAll('.cart-content');
        if (contentOfCart.length > 0) {
         cartCloseOpen = forNoProduct.classList.add('hide-no-product');
+        checkoutContainer.classList.add('hide-checkout-container');
         var eachProductInsideCart = document.querySelectorAll('.cart-content');
         for (let eachProduct of eachProductInsideCart){
             eachProduct.querySelector('.delete img').addEventListener('click', removeProduct)
@@ -51,6 +58,7 @@ function openCloseCart() {
         } else{
             forNoProduct.classList.remove('hide-no-product');
         }
+        cartContent.style.display = 'block';
 
 }
 
@@ -109,28 +117,33 @@ function decreaseQuantity(el) {
     let normalAmount = +thePrice.slice(1);
     let normalAmountNumber = normalAmount.toFixed(2);
     let totalAmount = (normalAmountNumber * numberDisplay).toFixed(2);
+    checkoutTotalAmount += +totalAmount;
+    checkoutTotalAmountDisplay.innerHTML = `Total :$${checkoutTotalAmount}`;
     let totalAmountToDisplay = `$${totalAmount}`;
     theTargetSection.querySelector('b').innerHTML = 0;
-    myCart.insertAdjacentHTML("beforeend", `
+    let editionName = theTargetSection.querySelector('.product-writeup>h1').innerHTML;
+    let sneakerPos = editionName.indexOf('Edition');
+    let normalWriting = editionName.slice(0,sneakerPos);
+    cartContent.insertAdjacentHTML("beforeend", `
     <div class="cart-content" id = "${'cartSection' + cartNum}">
     <div class="cart-item">
         <img src="${imageLink}" alt="">
         <div>
-            <p>Autumn Limited Edition...</p> 
+            <p>${normalWriting} Edition...</p> 
             <div class="show-price">
-                <span>${thePrice}</span>x<span class="checkout-number">${numberDisplay}</span> <h3>${totalAmountToDisplay}</h3>
+            <span>${thePrice}</span>x<span class="checkout-number">${numberDisplay}</span> <h3 class= 'checkout-total-amount'>${totalAmountToDisplay}</h3>
             </div>
         </div>
        
         <div class="delete">
             <img src="images/icon-delete.svg" alt="">
         </div>
-        
+      
     </div>
-    <div class="for-checkout">Checkout</div>
 </div> 
     `)
   cartNum++;
+  cartContent.style.display = 'block';
  }
 
 //  The function to remove products
@@ -139,15 +152,33 @@ function removeProduct(el) {
     let eachCartItenmId = el.currentTarget.parentElement.parentElement.parentElement.id;
      let removeFromCart = document.getElementById(eachCartItenmId);
      let theRealNumber = +removeFromCart.querySelector('.checkout-number').innerHTML;
-     alert(theRealNumber)
+     let theRealPrice = removeFromCart.querySelector('.checkout-total-amount').innerHTML;
+     let realPrice = +theRealPrice.slice(1);
+     checkoutTotalAmount -= +realPrice;
+     checkoutTotalAmountDisplay.innerHTML = `Total :$${checkoutTotalAmount}`;
      let updateNotification = +myNotification.innerHTML;
+    //  removeFromCart.style.visibility = 'hidden';
      removeFromCart.remove();
      let contentOfCart = document.querySelectorAll('.cart-content');
      if (contentOfCart.length > 0) {
         cartCloseOpen = forNoProduct.classList.add('hide-no-product');
+       
         } else{
             forNoProduct.classList.remove('hide-no-product');
+            checkoutContainer.classList.remove('hide-checkout-container');
         }
         
         myNotification.innerHTML = updateNotification - theRealNumber;
+    
+}
+
+function removeAllCart() {
+    
+    checkoutTotalAmount -= checkoutTotalAmount ;
+    checkoutTotalAmountDisplay.innerHTML = `Total :$${checkoutTotalAmount}`;
+    myNotification.innerHTML = 0;
+    let selectAllCartContent = document.querySelectorAll('.cart-content');
+    Array.from(selectAllCartContent).forEach((item) => item.remove());
+    checkoutContainer.classList.remove('hide-checkout-container');
+    forNoProduct.classList.remove('hide-no-product');
 }
