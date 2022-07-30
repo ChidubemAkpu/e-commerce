@@ -62,10 +62,18 @@ function openCloseCart() {
         cartContent.style.display = 'block';
 
 }
+// function that makes notification appear and disappear
+ function notificationUpdate(){
+    if (myNotification.innerHTML >= 1) {
+        myNotification.classList.add('hide-notification');
+    }
+    else{
+        myNotification.classList.remove('hide-notification')
+    }
+ }
+    
+ 
 
-// if (myNotification.innerHTML >= 1) {
-//     myNotification.classList.toggle('hide-notification');
-// }
 
 // Functions that increases and decreases quantity of each product
 
@@ -107,9 +115,7 @@ function decreaseQuantity(el) {
     }
     displayNotification += numberDisplay;
     myNotification.innerHTML = displayNotification;
-    if (myNotification.innerHTML >= 1) {
-        myNotification.classList.add('hide-notification');
-    }
+    notificationUpdate()
     let thisImage = theTargetSection.querySelector('.active-product>img').src;
     let pos = +thisImage.indexOf('image');
     let imageLink = thisImage.slice(pos);
@@ -173,7 +179,7 @@ function removeProduct(el) {
         }
         
         myNotification.innerHTML = updateNotification - theRealNumber;
-    
+    notificationUpdate()
 }
 
 function removeAllCart() {
@@ -181,6 +187,7 @@ function removeAllCart() {
     checkoutTotalAmount -= checkoutTotalAmount ;
     checkoutTotalAmountDisplay.innerHTML = `Total :$${checkoutTotalAmount}`;
     myNotification.innerHTML = 0;
+    notificationUpdate()
     let selectAllCartContent = document.querySelectorAll('.cart-content');
     Array.from(selectAllCartContent).forEach((item) => item.remove());
     checkoutContainer.classList.remove('hide-checkout-container');
