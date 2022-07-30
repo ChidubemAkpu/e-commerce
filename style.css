@@ -339,3 +339,45 @@ li:hover{
     color: green;
 }
 
+@media screen and (min-width: 900px) {
+    .menu-items{
+        height: auto;
+        position: static;
+    }
+    .menu-items ul{
+        display: flex;
+        flex-direction: row;
+        background: inherit;
+    }
+    .menu-items ul li{
+        background: inherit;
+        border: none;
+    }
+    li:hover{
+        background:hsl(25, 100%, 94%);
+    }
+    .for-close{
+        display: none;
+    }
+    .for-transparent{
+        display: none;
+    }
+    .for-open-close{
+        display: none;
+    }
+    section{
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 2em;
+        padding: 2em;
+        align-items: center;
+    }
+    main{
+        padding:2em 10em;
+    }
+    .click-to-update-cart{
+        width: 60%;
+        margin: auto;
+    }
+}
+
