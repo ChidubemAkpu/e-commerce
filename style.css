@@ -350,13 +350,12 @@ li:hover{
         flex-direction: row;
         background: inherit;
     }
-    .menu-items ul li{
+     li{
         background: inherit;
         border: none;
+        border: 2px solid black'
     }
-    li:hover{
-        background:hsl(25, 100%, 94%);
-    }
+    
     .for-close{
         display: none;
     }
@@ -380,5 +379,9 @@ li:hover{
         width: 60%;
         margin: auto;
     }
+    li:hover{
+        background: hsl(25, 100%, 94%);
+    }
+    
 }
 
