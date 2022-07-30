@@ -15,7 +15,7 @@ nav{
     align-items: center;
     padding: 0.1em 1.5em 1em;
     position: sticky;
-    top: 1px;
+    top: 0;
     z-index:1;
     background: white;
     box-shadow:  0 0 3px black;
@@ -35,16 +35,17 @@ nav{
 }
 .notification{
  background: red;
- width: 12px; height: 12px;
+ min-width: 2px; min-height: 2px;
  position:absolute;
- top:0;right: 0;
+ top:0;right: -4px;
  border-radius: 50%;
  color: white;
  font-size: 70%;
- padding: 7px;
  display: none;
+ padding: 3px;
  align-items: center;
  justify-content: center;
+ font-weight: 700;
 }
 .hide-notification{
     display: flex;
