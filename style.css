@@ -343,6 +343,7 @@ li:hover{
     .menu-items{
         height: auto;
         position: static;
+        width: auto;
     }
     .menu-items ul{
         display: flex;
